@@ -47,6 +47,46 @@
     .copier:hover {
       background: #d8bfa5;
     }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popup-content {
+      background: #fff5e1;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
+      text-align: left;
+    }
+    .close-btn {
+      float: right;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .acheter-btn {
+      margin-top: 20px;
+      background: #fbbf24;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+    }
+    .acheter-btn:hover {
+      background: #f97316;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -69,9 +109,25 @@
   <input type="number" min="0" step="0.01" id="usdc" oninput="convertir()">
   <p>Tu reçois : <strong><span id="tokens">0</span> CAC40K</strong></p>
 
+  <button class="acheter-btn" onclick="ouvrirPopup()">🛒 Acheter</button>
+
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <div class="close-btn" onclick="fermerPopup()">✖</div>
+      <h3>Étapes à suivre</h3>
+      <ol>
+        <li>Envoyez vos USDC (réseau Solana) à l'adresse ci-dessus.</li>
+        <li>Remplissez ce formulaire pour recevoir vos CAC40K.</li>
+        <li>Utilisez la même adresse Solana que celle utilisée pour l'envoi.</li>
+        <li>Ajoutez une capture d'écran ou le lien de transaction (facultatif mais recommandé).</li>
+      </ol>
+      <a href="https://forms.gle/TON_FORM_GOOGLE" target="_blank">📝 Remplir le formulaire</a>
+    </div>
+  </div>
+
   <script>
     const taux = 0.00005;
-    let vendus = 10; // tu mettras ce chiffre à jour automatiquement plus tard
+    let vendus = 0;
 
     function convertir() {
       const usdc = parseFloat(document.getElementById('usdc').value);
@@ -84,11 +140,18 @@
       navigator.clipboard.writeText(text).then(() => alert("Adresse copiée !"));
     }
 
-    // Barre de progression simulée (remplacer vendus avec l'automatisation plus tard)
     function updateProgress() {
       const pourcentage = Math.min(100, vendus / 1000000);
       document.getElementById("bar").style.width = pourcentage + "%";
       document.getElementById("sold").textContent = vendus.toLocaleString();
+    }
+
+    function ouvrirPopup() {
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function fermerPopup() {
+      document.getElementById("popup").style.display = "none";
     }
 
     updateProgress();
