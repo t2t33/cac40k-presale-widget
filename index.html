@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presale CAC40K</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #fdf7ef;
+      color: #1c1c1c;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 420px;
+      margin: auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    .progress-container {
+      background: #eee0c9;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+    .progress-bar {
+      background: linear-gradient(90deg, #fbbf24, #f97316);
+      height: 24px;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .copier {
+      margin-top: 10px;
+      background: #e0cbb7;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      font-weight: bold;
+    }
+    .copier:hover {
+      background: #d8bfa5;
+    }
+  </style>
+</head>
+<body>
+  <h2>🚀 Acheter du CAC40K</h2>
+  <p><strong>Objectif :</strong> 100 000 000 CAC40K</p>
+  <div class="progress-container">
+    <div class="progress-bar" id="bar"></div>
+  </div>
+  <p><span id="sold">0</span> / 100 000 000 CAC40K vendus</p>
+
+  <hr>
+  <p><strong>Adresse de paiement USDC :</strong></p>
+  <p style="font-family:monospace;font-size:14px" id="wallet">G9EBtTtGd6pV6xSMMoekdgSoL4GyKdp3j1w2xLqtEGH4</p>
+  <div class="copier" onclick="copier()">📋 Copier l'adresse</div>
+
+  <hr>
+  <p><strong>💱 Conversion en temps réel</strong></p>
+  <label>Tu paies (en USDC) :</label>
+  <input type="number" min="0" step="0.01" id="usdc" oninput="convertir()">
+  <p>Tu reçois : <strong><span id="tokens">0</span> CAC40K</strong></p>
+
+  <script>
+    const taux = 0.00005;
+    let vendus = 0; // tu mettras ce chiffre à jour automatiquement plus tard
+
+    function convertir() {
+      const usdc = parseFloat(document.getElementById('usdc').value);
+      const tokens = usdc ? Math.floor(usdc / taux) : 0;
+      document.getElementById('tokens').textContent = tokens.toLocaleString();
+    }
+
+    function copier() {
+      const text = document.getElementById('wallet').textContent;
+      navigator.clipboard.writeText(text).then(() => alert("Adresse copiée !"));
+    }
+
+    // Barre de progression simulée (remplacer vendus avec l'automatisation plus tard)
+    function updateProgress() {
+      const pourcentage = Math.min(100, vendus / 1000000);
+      document.getElementById("bar").style.width = pourcentage + "%";
+      document.getElementById("sold").textContent = vendus.toLocaleString();
+    }
+
+    updateProgress();
+  </script>
+</body>
+</html>
