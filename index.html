@@ -21,12 +21,26 @@
       border-radius: 20px;
       overflow: hidden;
       margin: 20px 0;
+      position: relative;
     }
     .progress-bar {
       background: linear-gradient(90deg, #dc9b50, #bb7e30);
       height: 24px;
       width: 0%;
       transition: width 0.3s ease;
+      position: relative;
+    }
+    .progress-label {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+      color: #1c1c1c;
     }
     input {
       width: 100%;
@@ -89,16 +103,9 @@
   <p><strong>First Presale :</strong> 100 000 000 CAC40K</p>
   <div class="progress-container">
     <div class="progress-bar" id="bar"></div>
+    <div class="progress-label"><span id="sold">0</span> / 100 000 000 CAC40K</div>
   </div>
-  <p><span id="sold">0</span> / 100 000 000 CAC40K vendus</p>
   <p style="font-size:13px;color:#555;">🔄 Dernière mise à jour : 09 avril 2025</p>
-
-  <hr>
-  <p><strong>Adresse de paiement USDC :</strong></p>
-  <p style="font-family:monospace;font-size:14px" id="wallet">
-    G9EBtTtGd6pV6xSMMoekdgSoL4GyKdp3j1w2xLqtEGH4
-    <span class="copier-icon" onclick="copier()">📋</span>
-  </p>
 
   <hr>
   <p><strong>💱 Convert</strong></p>
@@ -107,6 +114,13 @@
   <p>Tu reçois : <strong><span id="tokens">0</span> CAC40K</strong></p>
 
   <button class="acheter-btn" onclick="ouvrirPopup()">🛒 Acheter</button>
+
+  <hr>
+  <p><strong>Solana Address (USDC payment):</strong></p>
+  <p style="font-family:monospace;font-size:14px" id="wallet">
+    G9EBtTtGd6pV6xSMMoekdgSoL4GyKdp3j1w2xLqtEGH4
+    <span class="copier-icon" onclick="copier()">📋</span>
+  </p>
 
   <div class="popup" id="popup">
     <div class="popup-content">
