@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Presale CAC40K</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CAC40K Presale</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <style>
     body {
@@ -11,37 +11,37 @@
       background-color: #fdf7ef;
       color: #1c1c1c;
       padding: 20px;
-      border-radius: 12px;
       max-width: 420px;
       margin: auto;
+      border-radius: 12px;
       box-shadow: 0 0 20px rgba(0,0,0,0.05);
     }
+
     .progress-container {
       background: #eee0c9;
       border-radius: 20px;
       overflow: hidden;
-      margin: 20px 0;
+      margin: 20px 0 10px 0;
+      height: 28px;
       position: relative;
     }
+
     .progress-bar {
       background: linear-gradient(90deg, #dc9b50, #bb7e30);
-      height: 24px;
+      height: 100%;
       width: 0%;
       transition: width 0.3s ease;
-      position: relative;
     }
-    .progress-label {
+
+    .progress-text {
       position: absolute;
       width: 100%;
-      top: 0;
-      left: 0;
-      height: 24px;
-      line-height: 24px;
       text-align: center;
-      font-weight: bold;
       font-size: 14px;
+      top: 4px;
       color: #1c1c1c;
     }
+
     input {
       width: 100%;
       padding: 10px;
@@ -50,17 +50,17 @@
       border-radius: 8px;
       border: 1px solid #ccc;
     }
+
     .copier-icon {
-      display: inline-block;
-      margin-left: 10px;
+      margin-left: 8px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 15px;
     }
+
     .popup {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
       background: rgba(0, 0, 0, 0.6);
@@ -68,6 +68,7 @@
       align-items: center;
       z-index: 1000;
     }
+
     .popup-content {
       background: #fff5e1;
       padding: 20px;
@@ -76,12 +77,14 @@
       width: 90%;
       text-align: left;
     }
+
     .close-btn {
       float: right;
       cursor: pointer;
       font-weight: bold;
       font-size: 18px;
     }
+
     .acheter-btn {
       margin-top: 20px;
       background: #b56e3b;
@@ -93,30 +96,41 @@
       cursor: pointer;
       color: white;
     }
+
     .acheter-btn:hover {
       background: #995c2f;
+    }
+
+    @media screen and (max-width: 480px) {
+      body {
+        padding: 12px;
+        font-size: 15px;
+      }
+      .popup-content {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
   <h2>🚀 Acheter du CAC40K</h2>
-  <p><strong>First Presale :</strong> 100 000 000 CAC40K</p>
+  <p><strong>First Presale:</strong> 100,000,000 CAC40K</p>
+
   <div class="progress-container">
     <div class="progress-bar" id="bar"></div>
-    <div class="progress-label"><span id="sold">0</span> / 100 000 000 CAC40K</div>
+    <div class="progress-text"><span id="sold">0</span> / 100,000,000</div>
   </div>
-  <p style="font-size:13px;color:#555;">🔄 Dernière mise à jour : 09 avril 2025</p>
+  <p style="font-size:13px;color:#555;">🔄 Last update: 10 April 2025</p>
 
   <hr>
   <p><strong>💱 Convert</strong></p>
-  <label>Tu paies (en USDC) :</label>
+  <label>Amount in USDC:</label>
   <input type="number" min="0" step="0.01" id="usdc" oninput="convertir()">
-  <p>Tu reçois : <strong><span id="tokens">0</span> CAC40K</strong></p>
+  <p>You receive: <strong><span id="tokens">0</span> CAC40K</strong></p>
 
   <button class="acheter-btn" onclick="ouvrirPopup()">🛒 Acheter</button>
 
-  <hr>
-  <p><strong>Solana Address (USDC payment):</strong></p>
+  <p style="margin-top: 16px;"><strong>Solana Address (USDC payment):</strong></p>
   <p style="font-family:monospace;font-size:14px" id="wallet">
     G9EBtTtGd6pV6xSMMoekdgSoL4GyKdp3j1w2xLqtEGH4
     <span class="copier-icon" onclick="copier()">📋</span>
@@ -125,14 +139,23 @@
   <div class="popup" id="popup">
     <div class="popup-content">
       <div class="close-btn" onclick="fermerPopup()">✖</div>
-      <h3>Étapes à suivre</h3>
-      <ol>
-        <li>Envoyez vos USDC (réseau Solana) à l'adresse ci-dessus.</li>
-        <li>Remplissez ce formulaire pour recevoir vos CAC40K.</li>
-        <li>Utilisez la même adresse Solana que celle utilisée pour l'envoi.</li>
-        <li>Ajoutez une capture d'écran ou le lien de transaction (facultatif mais recommandé).</li>
-      </ol>
-      <a href="https://forms.gle/TON_FORM_GOOGLE" target="_blank">📝 Remplir le formulaire</a>
+      <h3 style="margin-bottom: 12px;">📝 Étapes à suivre</h3>
+      <ul style="padding-left: 20px; margin-bottom: 20px;">
+        <li>✅ Envoyez vos USDC (réseau Solana) à l’adresse ci-dessus.</li>
+        <li>✅ Cliquez sur le bouton ci-dessous pour accéder au formulaire.</li>
+        <li>✅ Remplissez toutes les informations demandées avec attention.</li>
+        <li>✅ Assurez-vous que l’adresse Solana utilisée est bien celle du paiement.</li>
+      </ul>
+
+      <p style="font-size:13px;color:#444;margin-top:10px;">
+        ⚠️ En cas d'erreur dans l’adresse ou la preuve de paiement, <strong>nous ne serons pas responsables de la perte de fonds.</strong>
+      </p>
+
+      <p style="font-style:italic; font-size:13px; color:#777; margin-top:15px;">
+        ⚠️ Please make sure all information is correct. We cannot be held responsible for any funds lost due to wrong wallet addresses or transaction errors.
+      </p>
+
+      <a href="https://cac40k.wixsite.com/cac40k/formulaire" target="_blank" style="display:inline-block;margin-top:20px;padding:10px 16px;background-color:#b56e3b;color:white;border-radius:6px;text-decoration:none;">📩 Access the form</a>
     </div>
   </div>
 
@@ -147,8 +170,8 @@
     }
 
     function copier() {
-      const text = document.getElementById('wallet').textContent.trim();
-      navigator.clipboard.writeText(text).then(() => alert("Adresse copiée !"));
+      const text = document.getElementById('wallet').innerText.trim();
+      navigator.clipboard.writeText(text).then(() => alert("Address copied!"));
     }
 
     function updateProgress() {
